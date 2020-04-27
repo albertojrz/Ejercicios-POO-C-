@@ -1,2 +1,2 @@
 # LaTienda
-Ejercicio didáctico. Programación Orientada a Objetos. Lenguaje: C++
+Ejercicios didácticos. Programación Orientada a Objetos. Lenguaje: C++
