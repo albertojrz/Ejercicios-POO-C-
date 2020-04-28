@@ -23,6 +23,7 @@ private:
         int cantidadBodega;
         int cantidadMinima;
         int cantidadUnidadesVendidas;
+        int ignorarEstaVariable;
 
 public:
     
