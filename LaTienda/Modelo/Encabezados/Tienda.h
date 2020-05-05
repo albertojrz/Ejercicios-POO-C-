@@ -20,6 +20,10 @@ public:
 
     // Métodos
         double darDineroEnCaja();
-        bool venderProducto1(int pCnantidad);
-        void abastecerProducto1(int pCantidad);
+        bool venderProducto(CProducto* pProducto,int pCantidad );
+        void abastecerProducto(CProducto* pProducto, int pCantidad);
+        void cambiarProducto(CProducto pProducto, Tipo pTipo, string pNombre, double pValorUnitario,
+                             int pCantidadBodega, int pCantidadMinima, int pCantidadUnidadesVendidas);
+        CProducto darProductoMasVendido();
+
 };

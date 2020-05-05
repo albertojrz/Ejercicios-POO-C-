@@ -20,15 +20,37 @@
     double CTienda::darDineroEnCaja(){
         return dineroEnCaja;
     }
-    bool CTienda::venderProducto1(int pCantidad){
-        if(producto1->vender(pCantidad)){
-         double precioVenta = producto1->darValorUnitario += producto1->darIVA * producto1->darValorUnitario;
-            dineroEnCaja += precioVenta * pCantidad;
-            return true;
-        }
-        else
-            return false;
+    bool CTienda::venderProducto(CProducto* pProducto, int pCantidad){
+      
+      if (pProducto == producto1){
+          if(producto1->vender(pCantidad)){
+          dineroEnCaja += producto1->darCostoTotal(pCantidad);
+          return true;
+          } else
+          return false;
+      }
+      else if(pProducto == producto2){
+           if(producto2->vender(pCantidad)){
+          dineroEnCaja += producto2->darCostoTotal(pCantidad);
+          return true;
+          } else
+          return false;
+      }
+      else if(pProducto == producto3){
+        if(producto3->vender(pCantidad)){
+          dineroEnCaja += producto3->darCostoTotal(pCantidad);
+          return true;
+          } else
+          return false;
+      }
+      else{
+        if(producto4->vender(pCantidad)){
+          dineroEnCaja += producto4->darCostoTotal(pCantidad);
+          return true;
+          } else
+          return false;
+      }
     }
-    void CTienda::abastecerProducto1(int pCantidad){
-        producto1->abastecer(pCantidad);
+    void CTienda::abastecerProducto(CProducto* pProducto, int pCantidad){
+          pProducto->abastecer(pCantidad);
     }

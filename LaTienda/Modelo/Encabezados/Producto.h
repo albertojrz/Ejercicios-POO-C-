@@ -3,13 +3,14 @@
 #include <iostream>
 using namespace std;
 
-class CProducto{
-private:
 // Enumeraciones
-        enum Tipo{
+enum class Tipo{
             PAPELERIA,SUPERMERCADO,DROGUERIA
         };
 
+
+class CProducto{
+private:
 // Constantes
         const double IVA_PAPELERIA = 0.16;
         const double IVA_SUPERMERCADO = 0.04;
@@ -23,24 +24,23 @@ private:
         int cantidadBodega;
         int cantidadMinima;
         int cantidadUnidadesVendidas;
-        int ignorarEstaVariable;
-
 public:
     
     // Constructores y Destructores
         CProducto();
         CProducto(Tipo pTipo, string pNombre, double pValorUnitario, int pCantidadBodega,
                 int pCantidadMinima, int pCantidadUnidadesVendidas);
-            // No usaremos destructor personalizado ya que no existe ninguna variable dinámica
+        // No usaremos destructor personalizado ya que no existe ninguna variable dinámica
 
     // Métodos
         string darNombre(); 
-        int darTipo();
+        Tipo darTipo();
         double darValorUnitario(); 
         int darCantidadBodega(); 
         int darCantidadMinima();
         int darCantidadUnidadesVendidas();
         double darIVA();
-        int vender(int pCantidad); 
+        bool vender(int pCantidad); 
         void abastecer(int pCantidad);
+        double darCostoTotal(int pCantidad);
 };

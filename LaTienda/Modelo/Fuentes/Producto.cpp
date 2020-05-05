@@ -3,7 +3,7 @@
     // Constructores
     CProducto::CProducto(){
         nombre = "Default";
-        tipo = PAPELERIA;
+        tipo = Tipo::PAPELERIA;
         valorUnitario = 0.0;
         cantidadBodega = 0;
         cantidadMinima = 0;
@@ -23,53 +23,59 @@
     string CProducto::darNombre(){
        return nombre;
     }   
-    int CProducto::darTipo(){
+    
+    Tipo CProducto::darTipo(){
         return tipo;
     }
+    
     double CProducto::darValorUnitario(){
         return valorUnitario;
     }
+    
     int CProducto::darCantidadBodega(){
         return cantidadBodega;
     }
+    
     int CProducto::darCantidadMinima(){
         return cantidadMinima;
     }
+    
     int CProducto::darCantidadUnidadesVendidas(){
         return cantidadUnidadesVendidas;
     }
-    double CProducto::darIVA(){
-        if(tipo == PAPELERIA)
-            return IVA_PAPELERIA;
-                else if(tipo == SUPERMERCADO)
-                    return IVA_SUPERMERCADO;
-                        else
-                            return IVA_DROGUERIA;
-                    
-        /* Con estructura switch
-        switch(tipo){
-            case PAPELERIA:
-                return IVA_PAPELERIA;
-                break;
-            case SUPERMERCADO:
-                return IVA_SUPERMERCADO;
-                break;
-            case DROGUERIA:
-                return IVA_DROGUERIA;
-                break; 
-        }
-        */
+    
+    double CProducto::darIVA(){     
+    switch(tipo){
+       case Tipo::PAPELERIA:
+       return IVA_PAPELERIA;
+
+       case Tipo::SUPERMERCADO:
+       return IVA_SUPERMERCADO;
+
+       case Tipo::DROGUERIA:
+       return IVA_DROGUERIA;
     }
-    int CProducto::vender(int pCantidad){
+    }
+    
+    bool CProducto::vender(int pCantidad){
         
         if (cantidadBodega < pCantidad)
-            return 0;
+            return false;
         else{
             cantidadBodega -= pCantidad;
             cantidadUnidadesVendidas += pCantidad;
-            return 1;
+            return true;
         }
     }
     void CProducto::abastecer(int pCantidad){
         cantidadBodega += pCantidad;
+    }
+
+    double CProducto::darCostoTotal(int pCantidad){
+        double aumentoIVA = valorUnitario*darIVA();
+        double costo = valorUnitario + aumentoIVA;
+        double costoTotal = costo * pCantidad;
+
+        return costoTotal;
+
     }
